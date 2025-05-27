@@ -17,7 +17,7 @@ const generations: Generation[] = [
   { id: '6', title: 'U14', image: require('../assets/images/6.jpg') },
 ];
 
-export default function GenerationsList() {
+export default function GenerationsList({navigation}: {navigation: any}) {
   const handleAddGeneration = () => {
     // later: navigation.navigate('AddGeneration');
     alert('Add Generation Pressed!');
@@ -32,11 +32,11 @@ export default function GenerationsList() {
           <GenerationCard
             title={item.title}
             image={item.image}
-            onPress={() => alert(`Open ${item.title}`)}
+            onPress={() => navigation.navigate('Memebers List', { itemId: item.id, generationTitle: item.title })}
           />
         )}
-        numColumns={2} // <-- 2 columns
-        columnWrapperStyle={styles.row} // row spacing
+        numColumns={2} 
+        columnWrapperStyle={styles.row}
         contentContainerStyle={styles.list}
       />
 

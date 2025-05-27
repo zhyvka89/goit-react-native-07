@@ -5,40 +5,42 @@ import {
   ImageSourcePropType,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 
 type Member = {
   id: string;
   name: string;
-  avatar: ImageSourcePropType; 
+  avatar: ImageSourcePropType;
+  birthday?: string;
 };
 
 const mockMembers: Member[] = [
-  { id: '1', name: 'John Doe', avatar: require('../assets/images/avatar.jpg') },
-  { id: '2', name: 'Alice Smith', avatar: require('../assets/images/avatar.jpg') },
-  { id: '3', name: 'Liam Johnson', avatar: require('../assets/images/avatar.jpg') },
-  { id: '4', name: 'John Doe', avatar: require('../assets/images/avatar.jpg') },
-  { id: '5', name: 'Alice Smith', avatar: require('../assets/images/avatar.jpg') },
-  { id: '6', name: 'Liam Johnson', avatar: require('../assets/images/avatar.jpg') },
+  { id: '1', name: 'John Doe', avatar: require('../assets/images/avatar.jpg'), birthday: '2013-01-01' },
+  { id: '2', name: 'Alice Smith', avatar: require('../assets/images/avatar.jpg'), birthday: '2013-01-01' },
+  { id: '3', name: 'Liam Johnson', avatar: require('../assets/images/avatar.jpg'), birthday: '2013-01-01' },
+  { id: '4', name: 'John Doe', avatar: require('../assets/images/avatar.jpg'), birthday: '2013-01-01' },
+  { id: '5', name: 'Alice Smith', avatar: require('../assets/images/avatar.jpg'), birthday: '2013-01-01' },
+  { id: '6', name: 'Liam Johnson', avatar: require('../assets/images/avatar.jpg'), birthday: '2013-01-01' },
 ];
 
-export default function MembersList() {
-  // const { generationTitle } = route.params;
+export default function MembersList({route, navigation}: {route: any, navigation: any}) {
+  const { generationTitle } = route.params;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Generation Members</Text>
+      <Text style={styles.title}>{generationTitle} Members</Text>
 
       <FlatList
         data={mockMembers}
         key={'2-cols'} 
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.memberRow}>
+          <TouchableOpacity style={styles.memberRow} onPress={() => navigation.navigate('Memeber Details', { member: item })}>
             <Image source={item.avatar} style={styles.avatar} />
             <Text style={styles.name}>{item.name}</Text>
-          </View>
+          </TouchableOpacity>
         )}
       />
     </View>
@@ -47,7 +49,6 @@ export default function MembersList() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     padding: 20,
     backgroundColor: '#fff',
   },

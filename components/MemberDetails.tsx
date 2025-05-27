@@ -9,14 +9,9 @@ import {
   View
 } from 'react-native';
 
-export default function MemberDetails(){
-  // const { member } = route.params;
-  const member = {
-    name: 'John Doe',
-    birthday: '1990-01-01',
-    avatar: require('../assets/images/avatar.jpg'),
-  };
-
+export default function MemberDetails({route}: {route: any}) {
+  const { member } = route.params;
+  
   const handlePaymentsPress = () => {
     Alert.alert('Navigate to Payments');
   };
