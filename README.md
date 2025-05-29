@@ -1,1 +1,1 @@
-<video controls src="/assets/Recording 2025-05-29 130304.mp4" title="Title"></video>
+[🎥 Watch demo](/assets/Recording 2025-05-29 130304.mp4)
